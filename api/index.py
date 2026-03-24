@@ -3,7 +3,7 @@ import requests
 import math
 from functools import lru_cache
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="../templates")
 
 API_URL = "https://potterapi-fedeperin.vercel.app/en/characters"
 
