@@ -10,21 +10,12 @@ API_URL = "https://potterapi-fedeperin.vercel.app/en/characters"
 
 @lru_cache(maxsize=1)
 def get_all_characters():
-    """
-    Fetch characters from API and cache the result.
-    This prevents repeated API calls on every page reload.
-    """
     response = requests.get(API_URL, timeout=10)
     response.raise_for_status()
     return response.json()
 
 
 def get_pagination_range(current_page, total_pages, window=2):
-    """
-    Returns a smart page range around the current page.
-    Example:
-    current=5, total=10, window=2 -> [3,4,5,6,7]
-    """
     start = max(1, current_page - window)
     end = min(total_pages, current_page + window)
     return range(start, end + 1)
@@ -45,7 +36,6 @@ def home():
         characters = []
         error_message = "Could not load data from the Harry Potter API at the moment."
 
-    # Filtering
     filtered_characters = [
         character for character in characters
         if search_query.lower() in character.get("fullName", "").lower()
@@ -55,7 +45,6 @@ def home():
         )
     ]
 
-    # Sorting
     if sort_order == "za":
         filtered_characters = sorted(
             filtered_characters,
@@ -68,8 +57,7 @@ def home():
             key=lambda c: c.get("fullName", "").lower()
         )
 
-    # Pagination
-    per_page = 10
+    per_page = 12
     total_characters = len(filtered_characters)
     total_pages = math.ceil(total_characters / per_page) if total_characters > 0 else 1
 
@@ -96,7 +84,3 @@ def home():
         pagination_range=pagination_range,
         error_message=error_message
     )
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
