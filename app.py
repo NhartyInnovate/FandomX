@@ -3,11 +3,7 @@ import requests
 import math
 from functools import lru_cache
 
-app = Flask(
-    __name__,
-    template_folder="../templates",
-    static_folder="../public"
-)
+app = Flask(__name__)
 
 API_URL = "https://potterapi-fedeperin.vercel.app/en/characters"
 
@@ -90,5 +86,5 @@ def home():
     )
 
 
-# Vercel looks for `app`
-app = app
+if __name__ == "__main__":
+    app.run(debug=True)
