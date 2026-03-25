@@ -84,3 +84,5 @@ def home():
         pagination_range=pagination_range,
         error_message=error_message
     )
+
+app = app
