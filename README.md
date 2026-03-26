@@ -67,6 +67,10 @@ Built with a focus on **clean architecture, UI/UX excellence, and real-world API
   - `functools.lru_cache`
 
 ---
+## 🌐 Live Demo
+
+[🚀 View Live App](https://fandom-x-chi.vercel.app/)
+
 
 ## ⚙️ Installation & Setup
 
